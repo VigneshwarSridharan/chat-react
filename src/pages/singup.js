@@ -7,10 +7,12 @@ class Singup extends React.Component {
         e.preventDefault();
         var data = $(e.target).serialize();
         http.post(baseurl + 'register', data).then(res => {
-            if(!res.data.hasOwnProperty('message')) {
-                
+            if(!res.data.hasOwnProperty('errno')) {
+                this.props.history.push('/singin',{message:'Account created successful, Sigin now.'});
             }
-            this.props.history.push('/singin',{message:'Account created successful, Sigin now.'});
+            else {
+                alert(res.data.message);
+            }
         })
     }
     render() {
