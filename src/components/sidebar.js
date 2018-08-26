@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
     return (
@@ -11,7 +12,7 @@ const Sidebar = () => {
                                 <div className="peers ai-c fxw-nw">
                                     <div className="peer">
                                         <div className="logo">
-                                            <img src="assets/static/images/logo.png" alt="" />
+                                            <img src={baseurl + "assets/images/logo.png"} alt="" />
                                         </div>
                                     </div>
                                     <div className="peer peer-greed">
@@ -32,12 +33,20 @@ const Sidebar = () => {
 
                 <ul className="sidebar-menu scrollable pos-r">
                     <li className="nav-item mT-30 active">
-                        <a className="sidebar-link" href="index.html">
+                        <Link className="sidebar-link" to="/">
                             <span className="icon-holder">
                                 <i className="c-blue-500 ti-home"></i>
                             </span>
                             <span className="title">Dashboard</span>
-                        </a>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="sidebar-link" to="/chat">
+                            <span className="icon-holder">
+                                <i className="c-deep-purple-500 ti-comment-alt"></i>
+                            </span>
+                            <span className="title">Chat</span>
+                        </Link>
                     </li>
                 </ul>
             </div>

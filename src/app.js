@@ -1,30 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import http from 'axios';
 
-import Sidebar from './components/sidebar';
-import Navigation from './components/navigation';
-import Footer from './components/footer';
+import Dashboard from './layout/dashboard';
+import Public from './layout/Public';
+
 
 const App = (props) => {
+    console.log(props.user);
+    if(!props.user) {
+        return (
+            <Public setUser={props.setUser} user={props.user}/>
+        )
+    }
     return (
-        <div className={`${props.sidebarIsOpen ? 'is-collapsed':''}`}>
-            <Sidebar sidebarIsOpen={props.sidebarIsOpen}/>
-            <div className="page-container">
-                <Navigation toggleSidebar={props.toggleSidebar} />
-                <main className="main-content bgc-grey-100">
-                    <div id="mainContent">
-
-                    </div>
-                </main>
-                <Footer />
-            </div>
-        </div>
+        <Dashboard sidebarIsOpen={props.sidebarIsOpen} user={props.user} toggleSidebar={props.toggleSidebar} />
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        sidebarIsOpen: state.sidebarIsOpen
+        sidebarIsOpen: state.sidebarIsOpen,
+        user: state.user
     }
 }
 
@@ -33,6 +30,12 @@ const mapDispactToProps = (dispatch) => {
         toggleSidebar: () => {
             dispatch({
                 type: 'TOGGLE_SIDEBAR'
+            })
+        },
+        setUser: (user) => {
+            dispatch({
+                type: 'SET_USER',
+                user
             })
         }
     }

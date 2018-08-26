@@ -41,7 +41,7 @@ const Navigation = (props) => {
                                             </div>
                                             <div className="peer peer-greed">
                                                 <span>
-                                                    <span className="fw-500">John Doe</span>
+                                                    <span className="fw-500">{props.user.username}</span>
                                                     <span className="c-grey-600">liked your <span className="text-dark">post</span>
                                                     </span>
                                                 </span>
@@ -188,7 +188,7 @@ const Navigation = (props) => {
                                 <img className="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg" alt="" />
                             </div>
                             <div className="peer">
-                                <span className="fsz-sm c-grey-900">John Doe</span>
+                                <span className="fsz-sm c-grey-900">{props.user.username}</span>
                             </div>
                         </a>
                         <ul className="dropdown-menu fsz-sm">
@@ -212,7 +212,7 @@ const Navigation = (props) => {
                             </li>
                             <li role="separator" className="divider"></li>
                             <li>
-                                <a href="" className="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                                <a href="/logout" className="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                                     <i className="ti-power-off mR-10"></i>
                                     <span>Logout</span>
                                 </a>

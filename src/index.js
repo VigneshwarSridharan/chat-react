@@ -8,6 +8,7 @@ import App from "./app";
 
 const reducers = (state = {
   sidebarIsOpen: false,
+  user: window.user ? user : null
 }, action) => {
   switch(action.type) {
     case 'TOGGLE_SIDEBAR':
@@ -16,17 +17,18 @@ const reducers = (state = {
         sidebarIsOpen: !state.sidebarIsOpen
       }
       break;
+    case 'SET_USER':
+      window.user = action.user;
+      state = {
+        ...state,
+        user: action.user
+      }
+      break;
   }
   return state;
 } 
 
 const store = createStore(reducers);
-
-store.dispatch({
-  type:'TOGGLE_SIDEBAR'
-});
-
-
 
 ReactDOM.render(
   <Provider store={store}>
