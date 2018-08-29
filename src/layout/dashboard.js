@@ -19,7 +19,7 @@ const Dashboard = (props) => {
                         <div id="mainContent">
                             <Switch>
                                 <Route exact={true} path="/" component={Home} />
-                                <Route path="/chat" component={Chat} />
+                                <Route path="/chat" component={() => (<Chat activeUsers={props.activeUsers} />)} />
                                 <Redirect from="/singin" to="/" />
                             </Switch>
                         </div>

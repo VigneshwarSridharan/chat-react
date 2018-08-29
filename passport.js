@@ -9,6 +9,8 @@ passport.use(new LocalStrategy(
         if(rows[0].password == password) {
           var passuser = rows[0];
           delete passuser.password;
+          delete passuser.created_at;
+          delete passuser.updated_at;
           return done(null, passuser);
         }
         else {

@@ -7,21 +7,26 @@ import Public from './layout/Public';
 
 
 const App = (props) => {
-    console.log(props.user);
     if(!props.user) {
         return (
             <Public setUser={props.setUser} user={props.user}/>
         )
     }
     return (
-        <Dashboard sidebarIsOpen={props.sidebarIsOpen} user={props.user} toggleSidebar={props.toggleSidebar} />
+        <Dashboard
+            sidebarIsOpen={props.sidebarIsOpen}
+            user={props.user}
+            toggleSidebar={props.toggleSidebar}
+            activeUsers={props.activeUsers}
+        />
     )
 }
 
 const mapStateToProps = (state) => {
     return {
         sidebarIsOpen: state.sidebarIsOpen,
-        user: state.user
+        user: state.user,
+        activeUsers: state.activeUsers
     }
 }
 
