@@ -11,7 +11,7 @@ module.exports = function (app) {
             activeUsers[userInx].user = data;
             var authUsers = activeUsers.filter(f => f.user);
             authUsers.map(user => {
-                user.emit('activeUsers',activeUsers.filter(f => f.id != socket.id).map(m => m.user));
+                user.emit('activeUsers',activeUsers.map(m => m.user).filter(f => f));
                 console.log(authUsers.map(m => m.user)); 
             })
         })

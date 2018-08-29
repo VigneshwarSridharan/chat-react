@@ -23,7 +23,7 @@ const reducers = (state = {
       break;
     case 'SET_USER':
       window.user = action.user;
-      io.emit('setActive', window.user);
+      io.emit('setActive', window.user );
       state = {
         ...state,
         user: action.user,
@@ -32,7 +32,7 @@ const reducers = (state = {
     case 'ACTIVE_USERS':
       state = {
         ...state,
-        activeUsers: action.activeUsers
+        activeUsers: action.activeUsers.filter(f => f.user_id != window.user.user_id)
       }
       break;
   }

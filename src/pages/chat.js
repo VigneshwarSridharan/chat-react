@@ -7,12 +7,30 @@ class Chat extends React.Component {
     }
 
     componentDidMount() {
-        
+        var {activeUsers} = this.props;
     }
-
+    
     render() {
+        var userList = [];
         var { activeUsers } = this.props;
-        console.log(activeUsers);
+        if(window.localStorage) {
+            if(localStorage.userList) {
+                var oldUsers = JSON.parse(localStorage.userList);
+                var newuser = activeUsers.filter( f => !oldUsers.find(fi => fi.user_id == f.user_id) );
+                userList = [...oldUsers, ...newuser]
+                localStorage.userList = JSON.stringify([...oldUsers, ...newuser]);
+            }
+            else {
+                userList = activeUsers;
+                localStorage.userList = JSON.stringify(activeUsers);
+            }
+        }
+        userList = userList.map( m => {
+            if(activeUsers.find(f => f.user_id == m.user_id)) {
+                m.status = 'active';
+            }
+            return m
+        })
         return (
             <div className="full-container">
                 <div className="peers fxw-nw pos-r">
@@ -24,15 +42,16 @@ class Chat extends React.Component {
 
                             <div className="layer w-100 fxg-1 scrollable pos-r">
                                 {
-                                    activeUsers.map((user, userk)=>{
+                                    userList.map((user, userk)=>{
+                                        console.log(user);
                                         return (
                                             <div key={'user-'+user.user_id} className="peers fxw-nw ai-c p-20 bdB bgc-white bgcH-grey-50 cur-p">
                                                 <div className="peer">
-                                                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="" className="w-3r h-3r bdrs-50p" />
+                                                    <img src={user.profile} alt="" className="w-3r h-3r bdrs-50p" />
                                                 </div>
                                                 <div className="peer peer-greed pL-20">
                                                     <h6 className="mB-0 lh-1 fw-400">{user.username}</h6>
-                                                    <small className="lh-1 c-green-500">Online</small>
+                                                    <small className={`lh-1 ${ user.hasOwnProperty('status') ? 'c-green-500' : 'c-gray-500'}`}>{user.hasOwnProperty('status') ? 'Online' : 'Offline'}</small>
                                                 </div>
                                             </div>
                                         )

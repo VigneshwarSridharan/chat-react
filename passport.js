@@ -1,6 +1,8 @@
 var passport = require('passport');
+var gravatar = require('gravatar');
 var LocalStrategy = require('passport-local').Strategy;
 var connection = require('./database');
+
 
 passport.use(new LocalStrategy(
   function (username, password, done) {
@@ -11,6 +13,7 @@ passport.use(new LocalStrategy(
           delete passuser.password;
           delete passuser.created_at;
           delete passuser.updated_at;
+          passuser.profile = gravatar.url(passuser.email, {s: '200', d: 'https://ui-avatars.com/api/'+passuser.username+'?length=1'});
           return done(null, passuser);
         }
         else {

@@ -37,7 +37,7 @@ const Navigation = (props) => {
                                     <li>
                                         <a href="" className="peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100">
                                             <div className="peer mR-15">
-                                                <img className="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/1.jpg" alt="" />
+                                                <img className="w-3r bdrs-50p" src={props.user.profile} alt="" />
                                             </div>
                                             <div className="peer peer-greed">
                                                 <span>
@@ -185,7 +185,7 @@ const Navigation = (props) => {
                     <li className="dropdown">
                         <a href="" className="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
                             <div className="peer mR-10">
-                                <img className="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg" alt="" />
+                                <img className="w-2r bdrs-50p" src={props.user.profile} alt="" />
                             </div>
                             <div className="peer">
                                 <span className="fsz-sm c-grey-900">{props.user.username}</span>
